@@ -1,0 +1,4 @@
+C:\Users\Luke\Documents\GitHub\WebMonitor\WebMonitor\bin\Debug\WebMonitor.dll
+C:\Users\Luke\Documents\GitHub\WebMonitor\WebMonitor\bin\Debug\WebMonitor.pdb
+C:\Users\Luke\Documents\GitHub\WebMonitor\WebMonitor\obj\Debug\WebMonitor.dll
+C:\Users\Luke\Documents\GitHub\WebMonitor\WebMonitor\obj\Debug\WebMonitor.pdb

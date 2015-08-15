@@ -1,0 +1,36 @@
+﻿@model IEnumerable<lukegriffithBlog.Models.Posts>
+
+@{
+    ViewBag.Title = @ViewBag.category;
+}
+
+<div class="page-header">
+    <h2>@ViewBag.category</h2>
+</div>
+@foreach (var item in Model)
+{
+
+    <div class="panel panel-default">
+        <div class="panel panel-heading">
+            <div class="text-primary">
+                <h3> @Html.DisplayFor(model => item.title) </h3>
+            </div>
+                @Html.DisplayFor(model => item.subTitle)
+             <div class="text-right"> @item.timePosted.ToString("dd/MM/yyyy") </div>
+        </div>
+
+        <div class="panel-body">
+             @Html.Raw(item.body)
+        </div>
+
+        <div class="panel-footer">
+            Categories:
+            @foreach (var category in item.category)
+            {
+                @Html.ActionLink(@category.title, "category", new { id = category.id }, new { @class = "btn btn-xs btn-primary" })
+            }
+        </div>
+
+    </div>
+
+}
