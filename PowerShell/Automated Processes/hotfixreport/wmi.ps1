@@ -1,4 +1,6 @@
-﻿function get-ciwmi {
+﻿# Script is executed by remote sessions
+
+function get-ciwmi {
 param([string[]]$ci,[string]$wmiClass)
 
 ipmo pspasswordproxyws

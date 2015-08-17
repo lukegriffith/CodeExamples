@@ -1,4 +1,10 @@
-﻿Import-Module AttendaModule
+﻿<# 
+Scripted workflow, executed by task scheduler collects disk data over WMI and checks their remaining percent assigning each one thresholds for its criticality.
+Emails analysts results and formats using HTML generation. 
+
+#>
+
+Import-Module AttendaModule
 Import-Module pspasswordproxyws
 
 function GenerateHTMLDiskSpaceReport {
@@ -208,10 +214,9 @@ function  Listen-Job ([string]$jobName,[int]$timeout) {
 
 
 
-$customer = "*Regus*"
-$reportTitle = "Regus DiskSpace Report"
-[string[]]$recipients = "<Anthony.Madge@attenda.com>","<Emmanuel.Aryee@attenda.com>", "<Alex.Baily@attenda.com>", "<Tony.Wiles@attenda.com>", "<Davion.Simmonds@attenda.com>"
-#$recipients = "<luke.griffith@attenda.com>"
+$customer = <# redacted #>
+$reportTitle = <# redacted #>
+[string[]]$recipients = <# redacted #>
 
     $jobName = [guid]::NewGuid()
     $servers = Get-ServerObjects $customer
@@ -220,13 +225,9 @@ $reportTitle = "Regus DiskSpace Report"
     Get-Job -Name $jobName -IncludeChildJob | Remove-Job -Force
     Get-DiskReport -diskstatistics $output -schedule -recipients $recipients -reportTitle $reportTitle
 
-    
-
-
-$customer = "*River*"
-$reportTitle = "River Island DiskSpace Report"
-$recipients = "<luke.griffith@attenda.com>", "<websitearchitecturesupport@river-island.com>"
-
+$customer = <# redacted #>
+$reportTitle = <# redacted #>
+$recipients = <# redacted #>
 
     $jobName = [guid]::NewGuid()
     $servers = Get-ServerObjects $customer

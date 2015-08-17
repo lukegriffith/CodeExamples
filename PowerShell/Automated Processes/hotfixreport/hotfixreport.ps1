@@ -1,10 +1,11 @@
 ﻿##### WMI HotFix Report #####
-## Required Resources - ATT10TRM03
+## Required Resources - TRM03
 ## Steps: Amend variables below
+## Purpose: Executes script on remote host that has module libraries to access CI password database.
 ## Author: Luke Griffith
 
 # Enter CI's here 
-$ci = "riv10dbs21", "riv10dbs22"
+$ci = "server1", "server2"
 # Desination for CSV Report 
  $path = "$home\Documents\HotFixReport.csv"
 # ID of hotfixes 
@@ -17,19 +18,22 @@ $ci = "riv10dbs21", "riv10dbs22"
 
 <#
 .Synopsis
-   Function goes off to ATT10TRM03 and executes reporting scripts. Requires manual input for att10trm03 password
+   Function goes off to TRM03 and executes reporting scripts. Requires manual input for TRM03 password.
 #>
 function Get-HotFixReport {
 param([string[]]$ci,[string]$wmi = "win32_quickfixengineering")
 
+    # Defining script block to execute on remote host.
     $sb = { 
         param($ci,$wmi)
             . C:\Users\mmc_support\Documents\Scripts\wmi.ps1
             get-ciwmi -ci $ci -wmiClass $wmi
     }
 
-    $pss =New-PSSession -ComputerName att10trm03 -Credential (Get-Credential -UserName "att10trm03\mmc_support" -Message "Enter password for mmc_support user on ATT10TRM03")
+    # Creating new PowerShell session asking for manual input for password. 
+    $pss =New-PSSession -ComputerName att10trm03 -Credential (Get-Credential -UserName "att10trm03\mmc_support" -Message "Enter password for mmc_support user on TRM03")
 
+    # Invoked command on remote host, passing in requested CI's and WMI class.
     Invoke-Command -Session $pss -ScriptBlock $sb -ArgumentList $ci, $wmi | select CSName, HotFixID, InstallDate, InstalledBy, Description
 
 }
