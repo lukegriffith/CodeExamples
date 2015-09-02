@@ -31,7 +31,7 @@ File Count: $($GCIcount)
 $Body += foreach ($item in $GCIoutput) {"$($item.name)"}
 
 # Sending message via Attenda SMTP server to SAP analyst
-Send-MailMessage -to "<analyst@attenda.com>" -From "<support@attenda.com>" -Subject "TVL10SAP01DP Fidelio List" -Body "$($Body)" -SmtpServer <# Redacted #>
+Send-MailMessage -to "<analyst@attenda.com>" -From "<support@attenda.com>" -Subject "Fidelio List" -Body "$($Body)" -SmtpServer <# Redacted #>
 
 # Outputting Log File
 $Body | Out-File $LogFile
