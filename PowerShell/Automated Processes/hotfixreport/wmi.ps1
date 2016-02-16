@@ -9,7 +9,7 @@ $ws = New-PasswordProxyWS
 $servers = $ci | foreach { 
 
 $obj = "" | select server, credential 
-$obj.credential = Get-ManageCredential -PasswordProxyWS $ws -CI riv10dbs21
+$obj.credential = Get-ManageCredential -PasswordProxyWS $ws -CI <redact>
 $obj.server = $_ 
 
 $obj
